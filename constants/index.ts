@@ -80,5 +80,7 @@ export const navItems = [
       value: 'size-asc',
     },
   ];
+
+  export const avatarPlaceHolder = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqf0Wx4wmsKfLYsiLdBx6H4D8bwQBurWhx5g&s"
   
   export const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
