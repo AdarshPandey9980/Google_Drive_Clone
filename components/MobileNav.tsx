@@ -21,11 +21,11 @@ interface Props {
   fullName: string;
   email: string;
   avatar: string;
-  ownerId: string;
+  $id: string;
   accountId: string;
 }
 
-const MobileNav = ({fullName, email, avatar, accountId, ownerId}: Props) => {
+const MobileNav = ({fullName, email, avatar, accountId, $id: ownerId}: Props) => {
 
   const [open, setopen] = useState(false)
   const pathname = usePathname()
@@ -78,7 +78,7 @@ const MobileNav = ({fullName, email, avatar, accountId, ownerId}: Props) => {
 
           <Separator className="my-5 bg-light-200/20"/>
           <div className="flex flex-col justify-between gap-5 pb-5">
-            <FileUpload/>
+            <FileUpload ownerId={ownerId} accountId={accountId}  />
             <form action={async () => {
              
                   await signOutUser();

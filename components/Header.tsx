@@ -5,7 +5,7 @@ import Search from './Search'
 import FileUpload from './FileUpload'
 import { signOutUser } from '@/lib/actions/user.action'
 
-const Header = () => {
+const Header = ({userId, accountId}: {userId: string, accountId: string}) => {
 
   // const router = useRouter()
 
@@ -14,7 +14,7 @@ const Header = () => {
         <Search/> 
 
         <div className='header-wrapper'>
-            <FileUpload/>
+            <FileUpload ownerId={userId} accountId={accountId}/>
 
             <form action={async () => {
                    'use server'
