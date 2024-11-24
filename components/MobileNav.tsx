@@ -15,7 +15,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import FileUpload from "./FileUpload";
-import { sighOutUser } from "@/lib/actions/user.action";
+import { signOutUser } from "@/lib/actions/user.action";
 
 interface Props {
   fullName: string;
@@ -32,7 +32,7 @@ const MobileNav = ({fullName, email, avatar, accountId, ownerId}: Props) => {
   const router = useRouter()
 
   return (
-    <header className="mobile-header">
+    <header className="mobile-header sm:hidden">
       <Image
         src={"/assets/icons/logo-full-brand.svg"}
         alt="logo"
@@ -81,7 +81,7 @@ const MobileNav = ({fullName, email, avatar, accountId, ownerId}: Props) => {
             <FileUpload/>
             <form action={async () => {
              
-                  await sighOutUser();
+                  await signOutUser();
                   
                 }}>
                 <Button type='submit' className='mobile-sign-out-button' >

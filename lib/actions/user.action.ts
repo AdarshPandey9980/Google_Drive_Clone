@@ -7,6 +7,7 @@ import { parseStringify } from "../utils";
 import { cookies } from "next/headers";
 import { avatarPlaceHolder } from "@/constants";
 import { redirect } from 'next/navigation'
+import { error } from "console";
 
 const getUserByEmail = async (email: string) => {
   const { database } = await createAdminClient();
@@ -94,7 +95,8 @@ export const verifyOtp = async ({
 };
 
 export const getCurrentUser = async () => {
-  const { account, database } = await createSessionClient();
+  try {
+    const { account, database } = await createSessionClient();
 
   const result = await account.get();
 
@@ -113,9 +115,14 @@ export const getCurrentUser = async () => {
   }
 
   return parseStringify(user.documents[0]);
+  } catch (error) {
+    console.log(error);
+    redirect('/sign-in')
+    
+  }
 };
 
-export const sighOutUser = async () => {
+export const signOutUser = async () => {
   try {
     const {account} = await createSessionClient()
 
@@ -131,4 +138,30 @@ export const sighOutUser = async () => {
   } finally {
     redirect('/sign-in')
   }
+}
+
+export const signOut = async () => {
+  await signOutUser();
+}
+
+
+export const signInUser = async ({email} : {email: string}) => {
+
+  try {
+    const existingUser = await getUserByEmail(email)
+    
+    if (!existingUser) {
+      //return parseStringify({accountId: null,error: "user not found please create account"} )
+      redirect('/sign-up')
+    }
+
+    if (existingUser) {
+      await sendEmailOtp({email})
+      return parseStringify({accountId: existingUser.accountId}) 
+    }
+  } catch (error) {
+    console.log(error);
+    
+  }
+
 }

@@ -1,11 +1,9 @@
-
 import React from 'react'
 import { Button } from './ui/button'
 import Image from 'next/image'
 import Search from './Search'
 import FileUpload from './FileUpload'
-import { sighOutUser } from '@/lib/actions/user.action'
-// import { useRouter } from 'next/navigation'
+import { signOutUser } from '@/lib/actions/user.action'
 
 const Header = () => {
 
@@ -19,9 +17,8 @@ const Header = () => {
             <FileUpload/>
 
             <form action={async () => {
-              'use server'
-                  await sighOutUser();
-                  
+                   'use server'
+                  await signOutUser();
                 }}>
                 <Button type='submit' className='sign-out-button' >
                     <Image src="/assets/icons/logout.svg" alt='logo' width={24} height={24} className='w-6' />
