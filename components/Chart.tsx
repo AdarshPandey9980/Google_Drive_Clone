@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Label,
@@ -6,7 +6,7 @@ import {
   PolarRadiusAxis,
   RadialBar,
   RadialBarChart,
-} from "recharts";
+} from 'recharts'
 
 import {
   Card,
@@ -14,27 +14,27 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-} from "@/components/ui/card";
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
-import { calculatePercentage, convertFileSize } from "@/lib/utils";
+} from '@/components/ui/card'
+import { ChartConfig, ChartContainer } from '@/components/ui/chart'
+import { calculatePercentage, convertFileSize } from '@/lib/utils'
 
 const chartConfig = {
   size: {
-    label: "Size",
+    label: 'Size',
   },
   used: {
-    label: "Used",
-    color: "white",
+    label: 'Used',
+    color: 'white',
   },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 
 export const Chart = ({ used = 0 }: { used: number }) => {
-  const chartData = [{ storage: "used", 10: used, fill: "white" }];
+  const chartData = [{ storage: 'used', 10: used, fill: 'white' }]
 
   return (
-    <Card className="chart">
-      <CardContent className="flex-1 p-0">
-        <ChartContainer config={chartConfig} className="chart-container">
+    <Card className='chart'>
+      <CardContent className='flex-1 p-0'>
+        <ChartContainer config={chartConfig} className='chart-container'>
           <RadialBarChart
             data={chartData}
             startAngle={90}
@@ -43,45 +43,45 @@ export const Chart = ({ used = 0 }: { used: number }) => {
             outerRadius={110}
           >
             <PolarGrid
-              gridType="circle"
+              gridType='circle'
               radialLines={false}
-              stroke="none"
-              className="polar-grid"
+              stroke='none'
+              className='polar-grid'
               polarRadius={[86, 74]}
             />
-            <RadialBar dataKey="storage" background cornerRadius={10} />
+            <RadialBar dataKey='storage' background cornerRadius={10} />
             <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
               <Label
                 content={({ viewBox }) => {
-                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                  if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
                     return (
                       <text
                         x={viewBox.cx}
                         y={viewBox.cy}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
+                        textAnchor='middle'
+                        dominantBaseline='middle'
                       >
                         <tspan
                           x={viewBox.cx}
                           y={viewBox.cy}
-                          className="chart-total-percentage"
+                          className='chart-total-percentage'
                         >
                           {used && calculatePercentage(used)
                             ? calculatePercentage(used)
-                                .toString()
-                                .replace(/^0+/, "")
-                            : "0"}
+                              .toString()
+                              .replace(/^0+/, '')
+                            : '0'}
                           %
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className="fill-white/70"
+                          className='fill-white/70'
                         >
                           Space used
                         </tspan>
                       </text>
-                    );
+                    )
                   }
                 }}
               />
@@ -89,12 +89,12 @@ export const Chart = ({ used = 0 }: { used: number }) => {
           </RadialBarChart>
         </ChartContainer>
       </CardContent>
-      <CardHeader className="chart-details">
-        <CardTitle className="chart-title">Available Storage</CardTitle>
-        <CardDescription className="chart-description">
-          {used ? convertFileSize(used) : "2GB"} / 2GB
+      <CardHeader className='chart-details'>
+        <CardTitle className='chart-title'>Available Storage</CardTitle>
+        <CardDescription className='chart-description'>
+          {used ? convertFileSize(used) : '2GB'} / 2GB
         </CardDescription>
       </CardHeader>
     </Card>
-  );
-};
+  )
+} 

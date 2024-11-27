@@ -1,5 +1,5 @@
-import React from "react";
-import Image from "next/image";
+import React from 'react'
+import Image from 'next/image'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -44,7 +44,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

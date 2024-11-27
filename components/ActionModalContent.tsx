@@ -69,4 +69,3 @@ export const ShareInput = ({file,onInputChange,onRemove}: {file: Models.Document
         </>
     )
 }
-
