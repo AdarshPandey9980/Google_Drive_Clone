@@ -141,6 +141,7 @@ export const deleteFile = async ({ fileId, path, bucketFileId }: DeleteFileProps
         if (deletedFile) {
             await storage.deleteFile(appwriteConfig.bucketId, bucketFileId)
         }
+        revalidatePath(path)
         return parseStringify({ status: 'success' })
     } catch (error) {
         handleError(error, 'failed to delete the file')
