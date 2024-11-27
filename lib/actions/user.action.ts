@@ -165,3 +165,8 @@ export const signInUser = async ({email} : {email: string}) => {
   }
 
 }
+
+export const userss = async () => {
+  const currentUser = await getCurrentUser()
+  return currentUser.email
+}
